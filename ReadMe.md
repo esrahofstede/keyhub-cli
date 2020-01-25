@@ -1,91 +1,109 @@
-﻿## Summary
-How do I create packages? See https://chocolatey.org/docs/create-packages
+[![](https://ci.appveyor.com/api/projects/status/github/esrahofstede/chocolatey-packages?svg=true)](https://ci.appveyor.com/project/esrahofstede/chocolatey-packages)
+[Update status](https://gist.github.com/YOUR_GITHUB_USERNAME_HERE/YOUR_GIST_ID_HERE)
+[![](http://transparent-favicon.info/favicon.ico)](#)
+[chocolatey/YOUR_CHOCOLATEY_USERNAME_HERE](https://chocolatey.org/profiles/esra.hofstede)
 
-If you are submitting packages to the community feed (https://chocolatey.org)
-always try to ensure you have read, understood and adhere to the create
-packages wiki link above.
+This repository contains [chocolatey automatic packages](https://chocolatey.org/docs/automatic-packages).  
+The repository is setup so that you can manage your packages entirely from the GitHub web interface (using AppVeyor to update and push packages) and/or using the local repository copy.
 
-## Automatic Packaging Updates?
-Consider making this package an automatic package, for the best 
-maintainability over time. Read up at https://chocolatey.org/docs/automatic-packages
+## Prerequisites
 
-## Shim Generation
-Any executables you include in the package or download (but don't call 
-install against using the built-in functions) will be automatically shimmed.
+To run locally you will need:
 
-This means those executables will automatically be included on the path.
-Shim generation runs whether the package is self-contained or uses automation 
-scripts. 
+- Powershell 5+.
+- [Chocolatey Automatic Package Updater Module](https://github.com/majkinetor/au): `Install-Module au` or `cinst au`.
 
-By default, these are considered console applications.
+In order to setup AppVeyor update runner please take a look at the AU wiki [AppVeyor section](https://github.com/majkinetor/au/wiki/AppVeyor).
 
-If the application is a GUI, you should create an empty file next to the exe 
-named 'name.exe.gui' e.g. 'bob.exe' would need a file named 'bob.exe.gui'.
-See https://chocolatey.org/docs/create-packages#how-do-i-set-up-shims-for-applications-that-have-a-gui
+## Create a package
 
-If you want to ignore the executable, create an empty file next to the exe 
-named 'name.exe.ignore' e.g. 'bob.exe' would need a file named 
-'bob.exe.ignore'. 
-See https://chocolatey.org/docs/create-packages#how-do-i-exclude-executables-from-getting-shims
+To create a new package see [Creating the package updater script](https://github.com/majkinetor/au#creating-the-package-updater-script).
 
-## Self-Contained? 
-If you have a self-contained package, you can remove the automation scripts 
-entirely and just include the executables, they will automatically get shimmed, 
-which puts them on the path. Ensure you have the legal right to distribute 
-the application though. See https://chocolatey.org/docs/legal. 
+## Testing the package
 
-You should read up on the Shim Generation section to familiarize yourself 
-on what to do with GUI applications and/or ignoring shims.
-
-## Automation Scripts
-You have a powerful use of Chocolatey, as you are using PowerShell. So you
-can do just about anything you need. Choco has some very handy built-in 
-functions that you can use, these are sometimes called the helpers.
-
-### Built-In Functions
-https://chocolatey.org/docs/helpers-reference
-
-A note about a couple:
-* Get-BinRoot - this is a horribly named function that doesn't do what new folks think it does. It gets you the 'tools' root, which by default is set to 'c:\tools', not the chocolateyInstall bin folder - see https://chocolatey.org/docs/helpers-get-tools-location
-* Install-BinFile - used for non-exe files - executables are automatically shimmed... - see https://chocolatey.org/docs/helpers-install-bin-file
-* Uninstall-BinFile - used for non-exe files - executables are automatically shimmed - see https://chocolatey.org/docs/helpers-uninstall-bin-file
-
-### Getting package specific information
-Use the package parameters pattern - see https://chocolatey.org/docs/how-to-parse-package-parameters-argument
-
-### Need to mount an ISO?
-https://chocolatey.org/docs/how-to-mount-an-iso-in-chocolatey-package
+In a package directory run: `Test-Package`. This function can be used to start testing in [chocolatey-test-environment](https://github.com/majkinetor/chocolatey-test-environment) via `Vagrant` parameter or it can test packages locally.
 
 
-### Environment Variables
-Chocolatey makes a number of environment variables available (You can access any of these with $env:TheVariableNameBelow):
+## Automatic package update
 
- * TEMP = Overridden to the CacheLocation, but may be the same as the original TEMP folder
- * ChocolateyInstall = Top level folder where Chocolatey is installed
- * chocolateyPackageName = The name of the package, equivalent to the id in the nuspec (0.9.9+)
- * chocolateyPackageVersion = The version of the package, equivalent to the version in the nuspec (0.9.9+)
- * chocolateyPackageFolder = The top level location of the package folder
+### Single package
 
-#### Advanced Environment Variables
-The following are more advanced settings:
-
- * chocolateyPackageParameters = (0.9.8.22+)
- * CHOCOLATEY_VERSION = The version of Choco you normally see. Use if you are 'lighting' things up based on choco version. (0.9.9+)
-    - Otherwise take a dependency on the specific version you need. 
- * chocolateyForceX86 = If available and set to 'true', then user has requested 32bit version. (0.9.9+)
-    - Automatically handled in built in Choco functions. 
- * OS_PLATFORM = Like Windows, OSX, Linux. (0.9.9+)
- * OS_VERSION = The version of OS, like 6.1 something something for Windows. (0.9.9+)
- * OS_NAME = The reported name of the OS. (0.9.9+)
- * IS_PROCESSELEVATED = Is the process elevated? (0.9.9+)
+Run from within the directory of the package to update that package:
+   
+    cd <package_dir>
+    ./update.ps1
  
-#### Experimental Environment Variables
-The following are experimental or use not recommended:
+If this script is missing, the package is not automatic.  
+Set `$au_Force = $true` prior to script call to update the package even if no new version is found.
 
- * OS_IS64BIT = This may not return correctly - it may depend on the process the app is running under (0.9.9+)
- * CHOCOLATEY_VERSION_PRODUCT = the version of Choco that may match CHOCOLATEY_VERSION but may be different (0.9.9+)
-    - it's based on git describe
- * IS_ADMIN = Is the user an administrator? But doesn't tell you if the process is elevated. (0.9.9+)
- * chocolateyInstallOverride = Not for use in package automation scripts. (0.9.9+)
- * chocolateyInstallArguments = the installer arguments meant for the native installer. You should use chocolateyPackageParameters intead. (0.9.9+)
+### Multiple packages
+ 
+To update all packages run `./update_all.ps1`. It accepts few options:
 
+```powershell
+./update_all.ps1 -Name a*                         # Update all packages which name start with letter 'a'
+./update_all.ps1 -ForcedPackages 'cpu-z copyq'    # Update all packages and force cpu-z and copyq
+./update_all.ps1 -ForcedPackages 'copyq:1.2.3'    # Update all packages but force copyq with explicit version
+./update_all.ps1 -ForcedPackages 'libreoffice-streams\fresh:6.1.0]'    # Update all packages but force libreoffice-streams package to update stream `fresh` with explicit version `6.1.0`.
+./update_all.ps1 -Root 'c:\packages'              # Update all packages in the c:\packages folder
+```
+
+The following global variables influence the execution of `update_all.ps1` script if set prior to the call:
+
+```powershell
+$au_NoPlugins = $true        #Do not execute plugins
+$au_Push      = $false       #Do not push to chocolatey
+```
+
+You can also call AU method `Update-AUPackages` (alias `updateall`) on its own in the repository root. This will just run the updater for the each package without any other option from `update_all.ps1` script. For example to force update of all packages with a single command execute:
+
+    updateall -Options ([ordered]@{ Force = $true })
+
+## Testing all packages
+
+You can force the update of all or subset of packages to see how they behave when complete update procedure is done:
+
+
+```powershell
+./test_all.ps1                            # Test force update on all packages
+./test_all.ps1 'cdrtfe','freecad', 'p*'   # Test force update on only given packages
+./test_all.ps1 'random 3'                 # Split packages in 3 groups and randomly select and test 1 of those each time
+```
+
+
+**Note**: If you run this locally your packages will get updated. Use `git reset --hard` after running this to revert the changes.
+
+## Pushing To Community Repository Via Commit Message
+
+You can force package update and push using git commit message. AppVeyor build is set up to pass arguments from the commit message to the `./update_all.ps1` script.
+
+If commit message includes `[AU <forced_packages>]` message on the first line, the `forced_packages` string will be sent to the updater.
+
+Examples:
+- `[AU pkg1 pkg2]`  
+Force update ONLY packages `pkg1` and `pkg2`.
+- `[AU pkg1:ver1 pkg2 non_existent]`  
+Force `pkg1` and use explicit version `ver1`, force `pkg2` and ignore `non_existent`.
+
+To see how versions behave when package update is forced see the [force documentation](https://github.com/majkinetor/au/blob/master/README.md#force-update).
+
+You can also push manual packages with command `[PUSH pkg1 ... pkgN]`. This works for any package anywhere in the file hierarchy and will not invoke AU updater at all. 
+
+If there are no changes in the repository use `--allow-empty` git parameter:
+
+    git commit -m '[AU copyq less:2.0]' --allow-empty
+    git push
+
+## Start using AU with your own packages
+
+To use this system with your own packages do the following steps:
+
+* Fork this project. If needed, rename it to `au-packages`.
+* Delete all existing packages.
+* Edit the `README.md` header with your repository info.
+* Set your environment variables. See [AU wiki](https://github.com/majkinetor/au/wiki#environment-variables) for details.
+
+Add your own packages now, with this in mind:
+* You can keep both manual and automatic packages together. To get only AU packages any time use `Get-AUPackages` function (alias `lsau` or `gau`)
+* Keep all package additional files in the package directory (icons, screenshots etc.). This keeps everything related to one package in its own directory so it is easy to move it around or remove it.
+ 

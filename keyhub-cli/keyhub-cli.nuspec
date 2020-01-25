@@ -1,43 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- Read this before creating packages: https://chocolatey.org/docs/create-packages -->
-<!-- Test your packages in a test environment: https://github.com/chocolatey/chocolatey-test-environment -->
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <!-- == PACKAGE SPECIFIC SECTION == -->
-    <!-- This section is about this package, although id and version have ties back to the software -->
-    <!-- id is lowercase and if you want a good separator for words, use '-', not '.'. Dots are only acceptable as suffixes for certain types of packages, e.g. .install, .portable, .extension, .template -->
-    <!-- If the software is cross-platform, attempt to use the same id as the debian/rpm package(s) if possible. -->
     <id>keyhub-cli</id>
-    <!-- version should MATCH as closely as possible with the underlying software -->
-    <!-- Is the version a prerelease of a version? https://docs.nuget.org/create/versioning#creating-prerelease-packages -->
-    <!-- Note that unstable versions like 0.0.1 can be considered a released version, but it's possible that one can release a 0.0.1-beta before you release a 0.0.1 version. If the version number is final, that is considered a released version and not a prerelease. -->
-    <version>15.1-beta</version>
-    <!--PackageSourceUrl - Where is this Chocolatey package located (think GitHub)? packageSourceUrl is highly recommended for the community feed-->
+    <version>15.1.0.1</version>
     <packageSourceUrl>http://github.com/esrahofstede/keyhub-cli</packageSourceUrl>
-    <!-- owners is a poor name for maintainers of the package. It sticks around by this name for compatibility reasons. It basically means you. -->
-    <owners>eh</owners>
+    <owners>Topicus Keyhub</owners>
     <!-- ============================== -->
 
     <!-- == SOFTWARE SPECIFIC SECTION == -->
-    <!-- This section is about the software itself -->
     <title>keyhub-cli (Install)</title>
     <authors>eh</authors>
-    <!-- projectUrl is required for the community feed -->
     <projectUrl>https://www.topicus-keyhub.com/</projectUrl>
-    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/keyhub-cli.png</iconUrl>-->
-    <!-- <copyright>Year Software Vendor</copyright> -->
+    <iconUrl>https://keyhub.topicusonderwijs.nl/login/assets/images/favicon-194x194.png</iconUrl>
+    <copyright>2020</copyright>
     <!-- If there is a license Url available, it is is required for the community feed -->
-    <!-- <licenseUrl>Software License Location __REMOVE_OR_FILL_OUT__</licenseUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>-->
+    <!-- <licenseUrl>Software License Location __REMOVE_OR_FILL_OUT__</licenseUrl> -->
+    <!-- <requireLicenseAcceptance>true</requireLicenseAcceptance> -->
     <!--<projectSourceUrl>Software Source Location - is the software FOSS somewhere? Link to it with this</projectSourceUrl>-->
-    <!--<docsUrl>At what url are the software docs located?</docsUrl>-->
+    <docsUrl>https://keyhub.topicusonderwijs.nl/docs/manual-nl-NL.html</docsUrl>
     <!--<mailingListUrl></mailingListUrl>-->
     <!--<bugTrackerUrl></bugTrackerUrl>-->
-    <tags>keyhub-cli portable SPACE_SEPARATED</tags>
-    <summary>Keyhub cli</summary>
-    <description>Keyhub cli</description>
-    <!-- <releaseNotes>__REPLACE_OR_REMOVE__MarkDown_Okay</releaseNotes> -->
+    <tags>keyhub-cli portable keyhub topicus</tags>
+    <summary>Keyhub cli is command line interface to manage Topicus Keyhub Passwords, Users and Groups</summary>
+    <description>
+      Topicus KeyHub can be access through a command line interface (CLI). To enable the CLI, the KeyHub CLI bundel has to be downloaded and unpacked on the system. The CLI requires an operational Java 11 installation.
+      The following command shows all options of the CLI:
+
+      > keyhub help
+      usage: keyhub &lt;command&lt; [ &lt;args&lt; ]
+
+      Commands are:
+          help      Display help information
+          list      List the groups the client has access to
+          login     Connect to a KeyHub server
+          logout    Disconnect from a KeyHub server, discarding all credentials
+          status    Shows the status of the current connection
+          version   Displays the version of the Topicus KeyHub CLI
+          vault     Access vaults in KeyHub
+
+      See 'keyhub help &lt;command&lt; for more information on a specific command.
+    </description>
+    <releaseNotes>
+    The command line interface now gives access to your rotating password. The new provisioning command group will be extended in a future version with dynamic provisioning support, allowing you to enable and disable groups directly from the command line. The zip file for the command line interface now also contains a Powershell and CMD wrapper for Windows.
+    </releaseNotes>
     <!-- =============================== -->      
 
     <!-- Specifying dependencies and version ranges? https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files -->
