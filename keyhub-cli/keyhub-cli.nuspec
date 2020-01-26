@@ -2,26 +2,17 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <!-- == PACKAGE SPECIFIC SECTION == -->
     <id>keyhub-cli</id>
-    <version>15.1.0.1</version>
-    <packageSourceUrl>http://github.com/esrahofstede/keyhub-cli</packageSourceUrl>
+    <version>15.1.0.2</version>
+    <packageSourceUrl>https://keyhub.topicusonderwijs.nl/docs/manual-en-GB.html</packageSourceUrl>
     <owners>Topicus Keyhub</owners>
-    <!-- ============================== -->
-
-    <!-- == SOFTWARE SPECIFIC SECTION == -->
     <title>keyhub-cli (Install)</title>
     <authors>eh</authors>
     <projectUrl>https://www.topicus-keyhub.com/</projectUrl>
     <iconUrl>https://keyhub.topicusonderwijs.nl/login/assets/images/favicon-194x194.png</iconUrl>
     <copyright>2020</copyright>
-    <!-- If there is a license Url available, it is is required for the community feed -->
-    <!-- <licenseUrl>Software License Location __REMOVE_OR_FILL_OUT__</licenseUrl> -->
-    <!-- <requireLicenseAcceptance>true</requireLicenseAcceptance> -->
-    <!--<projectSourceUrl>Software Source Location - is the software FOSS somewhere? Link to it with this</projectSourceUrl>-->
-    <docsUrl>https://keyhub.topicusonderwijs.nl/docs/manual-nl-NL.html</docsUrl>
-    <!--<mailingListUrl></mailingListUrl>-->
-    <!--<bugTrackerUrl></bugTrackerUrl>-->
+    <projectSourceUrl>https://keyhub.topicusonderwijs.nl/docs/manual-en-GB.html</projectSourceUrl>
+    <docsUrl>https://keyhub.topicusonderwijs.nl/docs/manual-en-GB.html</docsUrl>
     <tags>keyhub-cli portable keyhub topicus</tags>
     <summary>Keyhub cli is command line interface to manage Topicus Keyhub Passwords, Users and Groups</summary>
     <description>
@@ -45,22 +36,10 @@
     <releaseNotes>
     The command line interface now gives access to your rotating password. The new provisioning command group will be extended in a future version with dynamic provisioning support, allowing you to enable and disable groups directly from the command line. The zip file for the command line interface now also contains a Powershell and CMD wrapper for Windows.
     </releaseNotes>
-    <!-- =============================== -->      
 
-    <!-- Specifying dependencies and version ranges? https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files -->
     <dependencies>
       <dependency id="openjdk11" version="11.0.2.01" />
-      <!-- <dependency id="" version="[__EXACT_VERSION__]" />
-      <dependency id="" version="[_MIN_VERSION_INCLUSIVE, MAX_VERSION_INCLUSIVE]" />
-      <dependency id="" version="[_MIN_VERSION_INCLUSIVE, MAX_VERSION_EXCLUSIVE)" />
-      <dependency id="" />
-      <dependency id="chocolatey-uninstall.extension" /> -->
     </dependencies>
-    <!-- chocolatey-uninstall.extension - If supporting 0.9.9.x (or below) and including a chocolateyUninstall.ps1 file to uninstall an EXE/MSI, you probably want to include chocolatey-uninstall.extension as a dependency. Please verify whether you are using a helper function from that package. -->
-
-    <!--<provides>NOT YET IMPLEMENTED</provides>-->
-    <!--<conflicts>NOT YET IMPLEMENTED</conflicts>-->
-    <!--<replaces>NOT YET IMPLEMENTED</replaces>-->
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
