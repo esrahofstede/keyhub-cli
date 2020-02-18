@@ -4,15 +4,14 @@
   <metadata>
     <id>keyhub-cli</id>
     <version>15.1.0.2</version>
-    <packageSourceUrl>https://keyhub.topicusonderwijs.nl/docs/manual-en-GB.html</packageSourceUrl>
-    <owners>Topicus Keyhub</owners>
+    <packageSourceUrl>https://github.com/esrahofstede/keyhub-cli</packageSourceUrl>
+    <owners>esra.hofstede</owners>
     <title>keyhub-cli (Install)</title>
-    <authors>eh</authors>
+    <authors>Topicus Keyhub</authors>
     <projectUrl>https://www.topicus-keyhub.com/</projectUrl>
     <iconUrl>https://keyhub.topicusonderwijs.nl/login/assets/images/favicon-194x194.png</iconUrl>
     <copyright>Topicus 2020</copyright>
-    <projectSourceUrl>https://keyhub.topicusonderwijs.nl/docs/manual-en-GB.html</projectSourceUrl>
-    <docsUrl>https://keyhub.topicusonderwijs.nl/docs/manual-en-GB.html</docsUrl>
+    <docsUrl>https://files.topicus-keyhub.com/manual/manual-en-GB.html</docsUrl>
     <tags>keyhub-cli portable keyhub topicus</tags>
     <summary>Keyhub cli is command line interface to manage Topicus Keyhub Passwords, Users and Groups</summary>
     <description>
@@ -36,10 +35,6 @@
     <releaseNotes>
     The command line interface now gives access to your rotating password. The new provisioning command group will be extended in a future version with dynamic provisioning support, allowing you to enable and disable groups directly from the command line. The zip file for the command line interface now also contains a Powershell and CMD wrapper for Windows.
     </releaseNotes>
-
-    <dependencies>
-      <dependency id="openjdk11" version="11.0.2.01" />
-    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />

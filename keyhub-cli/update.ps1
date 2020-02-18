@@ -1,23 +1,18 @@
 import-module au
 . $PSScriptRoot\..\_scripts\all.ps1
 
-$releases    = 'https://keyhub.topicusonderwijs.nl/docs/manual-nl-NL.html'
+$releases = 'https://files.topicus-keyhub.com/manual/manual-en-GB.html'
 
 function global:au_SearchReplace {
    @{
         ".\tools\chocolateyInstall.ps1" = @{
+            "(?i)(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
             "(?i)(^\s*[$]packageName\s*=\s*)('.*')"= "`$1'$($Latest.PackageName)'"
             "(?i)(^\s*[$]fileType\s*=\s*)('.*')"   = "`$1'$($Latest.FileType)'"
         }
 
         "$($Latest.PackageName).nuspec" = @{
             "(\<releaseNotes\>).*?(\</releaseNotes\>)" = "`${1}$($Latest.ReleaseNotes)`$2"
-        }
-
-        ".\legal\VERIFICATION.txt" = @{
-          "(?i)(\s+x32:).*"            = "`${1} $($Latest.URL32)"
-          "(?i)(checksum32:).*"        = "`${1} $($Latest.Checksum32)"
-          "(?i)(Get-RemoteChecksum).*" = "`${1} $($Latest.URL32)"
         }
     }
 }
@@ -29,15 +24,20 @@ function global:au_GetLatest {
     $download_page = Invoke-WebRequest -Uri $releases
 
     $re  = "keyhub-cli.*.zip"
-    $url = $download_page.links | ? href -match $re | select -First 1 -expand href
-    $url = 'https://keyhub.topicusonderwijs.nl/docs/' + $url
+    $url = $download_page.links | ? href -match $re | Select-Object -First 1 -expand href
+    $url = 'https://files.topicus-keyhub.com/manual/' + $url
 
-    $version = $url -split '-|.zip' | select -Last 1 -Skip 2
+    $version = $url -split '-|.zip' | Select-Object -Last 1 -Skip 1
+
+    $releasesPageUrl = "https://blog.topicus-keyhub.com/tag/release/";
+    $releasesPage = Invoke-WebRequest -Uri $releasesPageUrl
+    $releaseNotesPartialUrl = $releasesPage.links | ? href -match $version | Select-Object -First 1 -expand href
+    $releaseNotesUrl = "https://blog.topicus-keyhub.com" + $releaseNotesPartialUrl
 
     return @{
         URL32        = $url
-        Version      = $version.Replace('v','')
-        ReleaseNotes = "$releases/tag/${version}"
+        Version      = $version
+        ReleaseNotes = "$releaseNotesUrl"
     }
 }
 
