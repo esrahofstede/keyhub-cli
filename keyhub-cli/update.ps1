@@ -8,7 +8,7 @@ function global:au_SearchReplace {
         ".\tools\chocolateyInstall.ps1" = @{
             "(?i)(^\s*url\s*=\s*)('.*')"          = "`$1'$($Latest.URL32)'"
             "(?i)(^\s*[$]packageName\s*=\s*)('.*')"= "`$1'$($Latest.PackageName)'"
-            "(?i)(^\s*[$]fileType\s*=\s*)('.*')"   = "`$1'$($Latest.FileType)'"
+            "(?i)(^\s*checksum\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum32)'"
         }
 
         "$($Latest.PackageName).nuspec" = @{
@@ -34,10 +34,13 @@ function global:au_GetLatest {
     $releaseNotesPartialUrl = $releasesPage.links | ? href -match $version | Select-Object -First 1 -expand href
     $releaseNotesUrl = "https://blog.topicus-keyhub.com" + $releaseNotesPartialUrl
 
+    $remote_checksum  = Get-RemoteChecksum $url
+
     return @{
         URL32        = $url
         Version      = $version
         ReleaseNotes = "$releaseNotesUrl"
+        Checksum32 = $remote_checksum
     }
 }
 
