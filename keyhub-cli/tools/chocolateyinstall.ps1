@@ -6,8 +6,8 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $packageArgs = @{
   packageName   = $packageName
   unzipLocation = $toolsDir
-  url           = 'https://files.topicus-keyhub.com/manual/keyhub-cli-15.1.zip'
-  checksum = 'FBD72088D24CD8D562E15F5BE7E4EAB5246AFB8EBC4BAD0D5C7D4FEDCDFE5B18'
+  url           = 'https://files.topicus-keyhub.com/manual/keyhub-cli-15.2.zip'
+  checksum = '4E1883180E3EA2E451C70998FCA30BD72F8DE769AE638A7E71DA9A670186C2CE'
   checksumType = 'sha256'
 }
 
@@ -17,4 +17,5 @@ Install-ChocolateyZipPackage @packageArgs
 ## Unzips a file to the specified location - auto overwrites existing content
 ## - https://chocolatey.org/docs/helpers-get-chocolatey-unzip
 # Get-ChocolateyUnzip @packageArgs -destination $toolsDir -fileFullPath $fileLocation 
-Install-ChocolateyPath -pathToInstall $toolsDir  -pathType 'Machine'
+# Install-ChocolateyPath -pathToInstall $toolsDir  -pathType 'Machine'
+Install-BinFile -Name keyhub -Path $toolsDir/keyhub.cmd
