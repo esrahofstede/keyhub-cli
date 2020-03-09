@@ -26,10 +26,9 @@ function Set-DescriptionFromReadme([int]$SkipFirst=0, [int]$SkipLast=0) {
     $description = $description | select -Index ($SkipFirst..$endIdx) | Out-String
 
     $nuspecFileName = $Latest.PackageName + ".nuspec"
-    $nu = gc $nuspecFileName -Raw
+    $nu = (Get-Content $nuspecFileName -Raw -Encoding UTF8)
     $nu = $nu -replace "(?smi)(\<description\>).*?(\</description\>)", "`${1}$($description)`$2"
 
-    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding($False)
     $NuPath = (Resolve-Path $NuspecFileName)
-    [System.IO.File]::WriteAllText($NuPath, $nu, $Utf8NoBomEncoding)
+    Set-Content -Path $NuPath -Value $nu -Encoding UTF8
 }

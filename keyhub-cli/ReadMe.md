@@ -1,4 +1,5 @@
-﻿Topicus KeyHub can be access through a command line interface (CLI). To enable the CLI, the KeyHub CLI bundel has to be downloaded and unpacked on the system. The CLI requires an operational Java 11 installation.
+﻿Topicus KeyHub can be access through a command line interface (CLI). 
+The CLI requires an operational Java 11 installation.
 
 The following command shows all options of the CLI:
 
