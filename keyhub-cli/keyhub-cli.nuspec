@@ -14,7 +14,10 @@
     <docsUrl>https://files.topicus-keyhub.com/manual/manual-en-GB.html</docsUrl>
     <tags>keyhub-cli portable keyhub topicus</tags>
     <summary>Keyhub cli is command line interface to manage Topicus Keyhub Passwords, Users and Groups</summary>
-    <description>The following command shows all options of the CLI:
+    <description>Topicus KeyHub can be access through a command line interface (CLI).
+To enable the CLI, the KeyHub CLI bundel has to be downloaded and unpacked on the system.
+The CLI requires an operational Java 11 installation.
+The following command shows all options of the CLI:
 
 > keyhub help
 usage: keyhub &lt;command&lt; [ &lt;args&lt; ]
