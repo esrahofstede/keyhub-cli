@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if 'Ω' doesn't appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>keyhub-cli</id>
-    <version>15.2</version>
+    <version>15.2.0.20200310</version>
     <packageSourceUrl>https://github.com/esrahofstede/keyhub-cli</packageSourceUrl>
     <owners>esra.hofstede</owners>
     <title>keyhub-cli (Install)</title>
@@ -14,9 +14,9 @@
     <docsUrl>https://files.topicus-keyhub.com/manual/manual-en-GB.html</docsUrl>
     <tags>keyhub-cli portable keyhub topicus</tags>
     <summary>Keyhub cli is command line interface to manage Topicus Keyhub Passwords, Users and Groups</summary>
-    <description>Topicus KeyHub can be access through a command line interface (CLI).
-To enable the CLI, the KeyHub CLI bundel has to be downloaded and unpacked on the system.
+    <description>Topicus KeyHub can be access through a command line interface (CLI). 
 The CLI requires an operational Java 11 installation.
+
 The following command shows all options of the CLI:
 
 > keyhub help
@@ -39,3 +39,4 @@ See 'keyhub help &lt;command&lt; for more information on a specific command.
     <file src="tools\**" target="tools" />
   </files>
 </package>
+
