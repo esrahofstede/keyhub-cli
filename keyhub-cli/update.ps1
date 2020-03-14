@@ -46,4 +46,6 @@ function global:au_GetLatest {
 
 update -ChecksumFor none
 
-Get-ChildItem $PSScriptRoot/tools/*.zip | ForEach-Object { Remove-Item -Path $_.FullName } 
+$zipFiles = Get-ChildItem $PSScriptRoot/tools/*.zip
+Write-Host $zipFiles
+$zipFiles | ForEach-Object { Remove-Item -Path $_.FullName } 
