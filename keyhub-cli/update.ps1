@@ -18,7 +18,11 @@ function global:au_SearchReplace {
 }
 
 function global:au_BeforeUpdate { Get-RemoteFiles -Purge }
-function global:au_AfterUpdate  { Set-DescriptionFromReadme -SkipFirst 0 }
+function global:au_AfterUpdate  { 
+    Set-DescriptionFromReadme -SkipFirst 0;
+    $zipFiles = Get-ChildItem $PSScriptRoot/tools/*.zip
+    $zipFiles | ForEach-Object { Remove-Item -Path $_.FullName } 
+}
 
 function global:au_GetLatest {
     $download_page = Invoke-WebRequest -Uri $releases
@@ -45,7 +49,3 @@ function global:au_GetLatest {
 }
 
 update -ChecksumFor none
-
-$zipFiles = Get-ChildItem $PSScriptRoot/tools/*.zip
-Write-Host $zipFiles
-$zipFiles | ForEach-Object { Remove-Item -Path $_.FullName } 
