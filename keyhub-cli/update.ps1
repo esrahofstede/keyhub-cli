@@ -40,7 +40,7 @@ function global:au_GetLatest {
 
     $shaUrl = $url + ".sha256"
     $checksumFileName = "keyhub-cli.zip.sha256"
-    Invoke-WebRequest -Uri $shaUrl -OutFile $checksumFileName -Force
+    Invoke-WebRequest -Uri $shaUrl -OutFile $checksumFileName
     $checksumContent = Get-Content -Path "./$checksumFileName"
     $checksum = $checksumContent.Substring(0,64)
 
