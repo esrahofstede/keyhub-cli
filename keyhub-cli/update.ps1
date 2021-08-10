@@ -38,13 +38,17 @@ function global:au_GetLatest {
     $releaseNotesPartialUrl = $releasesPage.links | ? href -match $version | Select-Object -First 1 -expand href
     $releaseNotesUrl = "https://blog.topicus-keyhub.com" + $releaseNotesPartialUrl
 
-    $remote_checksum  = Get-RemoteChecksum $url
+    $shaUrl = $url + ".sha256"
+    $checksumFileName = "keyhub-cli.zip.sha256"
+    Invoke-WebRequest -Uri $shaUrl -OutFile $checksumFileName -Force
+    $checksumContent = Get-Content -Path "./$checksumFileName"
+    $checksum = $checksumContent.Substring(0,64)
 
     return @{
         URL32        = $url
         Version      = $version
         ReleaseNotes = "$releaseNotesUrl"
-        Checksum32 = $remote_checksum
+        Checksum32 = $checksum
     }
 }
 
