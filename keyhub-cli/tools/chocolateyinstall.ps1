@@ -7,7 +7,7 @@ $packageArgs = @{
   packageName   = $packageName
   unzipLocation = $toolsDir
   url           = 'https://files.topicus-keyhub.com/manual/keyhub-cli-18.2.zip'
-  checksum = 'E5137B245A2AC2758682BDAEEC63AAFF8D83AB66B31BC6E7A435D533F7D0828C'
+  checksum = 'EB76FCD641560D5093068117EB78A8DB638385B236C405CB0A9AEB719E732FA1'
   checksumType = 'sha256'
 }
 

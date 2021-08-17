@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>keyhub-cli</id>
-    <version>18.2</version>
+    <version>18.2.0.20210817</version>
     <packageSourceUrl>https://github.com/esrahofstede/keyhub-cli</packageSourceUrl>
     <owners>esra.hofstede</owners>
     <title>keyhub-cli (Install)</title>
@@ -39,6 +39,7 @@ See 'keyhub help &lt;command&lt; for more information on a specific command.
     <file src="tools\**" target="tools" />
   </files>
 </package>
+
 
 
 
