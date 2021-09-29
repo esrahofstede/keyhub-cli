@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>keyhub-cli</id>
-    <version>18.2.0.20210817</version>
+    <version>19.0</version>
     <packageSourceUrl>https://github.com/esrahofstede/keyhub-cli</packageSourceUrl>
     <owners>esra.hofstede</owners>
     <title>keyhub-cli (Install)</title>
@@ -33,12 +33,13 @@ Commands are:
 
 See 'keyhub help &lt;command&lt; for more information on a specific command.
 </description>
-    <releaseNotes>https://blog.topicus-keyhub.com</releaseNotes>
+    <releaseNotes>https://blog.topicus-keyhub.com/topicus-keyhub-19-0/</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
   </files>
 </package>
+
 
 
 
