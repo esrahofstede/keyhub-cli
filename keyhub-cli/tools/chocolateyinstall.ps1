@@ -6,8 +6,8 @@ $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $packageArgs = @{
   packageName   = $packageName
   unzipLocation = $toolsDir
-  url           = 'https://files.topicus-keyhub.com/manual/keyhub-cli-19.1.zip'
-  checksum = '5904A0162F6E189B4305BB2B4B6DD2F3EAD59440969B5D58CB2A7F464705FB3D'
+  url           = 'https://files.topicus-keyhub.com/manual/keyhub-cli-19.2.zip'
+  checksum = '2CEA4886A6DA17F8626E79E9C9FBAE9FCB3E61AF5BC8C2739E01CAAA34AF6F8E'
   checksumType = 'sha256'
 }
 
