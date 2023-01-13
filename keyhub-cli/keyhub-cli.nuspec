@@ -10,7 +10,7 @@
     <authors>Topicus Keyhub</authors>
     <projectUrl>https://www.topicus-keyhub.com/</projectUrl>
     <iconUrl>https://rawcdn.githack.com/esrahofstede/keyhub-cli/f660845698ad8364c92c0646f921be9fc0b21f40/keyhub-cli/keyhub-favicon.png</iconUrl>
-    <copyright>Topicus 2021</copyright>
+    <copyright>Topicus 2023</copyright>
     <docsUrl>https://files.topicus-keyhub.com/manual/manual-en-GB.html</docsUrl>
     <tags>keyhub-cli portable keyhub topicus</tags>
     <summary>Keyhub cli is command line interface to manage Topicus Keyhub Passwords, Users and Groups</summary>

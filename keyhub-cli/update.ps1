@@ -32,6 +32,9 @@ function global:au_GetLatest {
     $url = 'https://files.topicus-keyhub.com/manual/' + $url
 
     $version = $url -split '-|.zip' | Select-Object -Last 1 -Skip 1
+    if($version -notcontains "\."){
+        $version = $version + ".0"
+    }
 
     $releasesPageUrl = "https://blog.topicus-keyhub.com/tag/release/";
     $releasesPage = Invoke-WebRequest -Uri $releasesPageUrl

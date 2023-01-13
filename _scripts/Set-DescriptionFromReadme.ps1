@@ -23,7 +23,7 @@ function Set-DescriptionFromReadme([int]$SkipFirst=0, [int]$SkipLast=0) {
     Write-Host 'Setting README.md to Nuspec description tag'
     $description = gc README.md -Encoding UTF8
     $endIdx = $description.Length - $SkipLast
-    $description = $description | select -Index ($SkipFirst..$endIdx) | Out-String
+    $description = $description | Select-Object -Index ($SkipFirst..$endIdx) | Out-String
 
     $nuspecFileName = $Latest.PackageName + ".nuspec"
     $nu = (Get-Content $nuspecFileName -Raw -Encoding UTF8)
